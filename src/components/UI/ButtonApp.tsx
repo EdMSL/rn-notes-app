@@ -8,7 +8,9 @@ interface IProps {
 export const ButtonApp: React.FunctionComponent<IProps> = ({ onPress }) => {
   return (
     <View>
-      <Button title="Press" onPress={onPress}/>
+      <Button title="Press"
+onPress={onPress}
+      />
     </View>
   );
 };

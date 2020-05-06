@@ -19,7 +19,7 @@ module.exports = {
     "@react-native-community",
     // "airbnb",
     // "airbnb/hooks",
-    "plugin:@typescript-eslint/recommended",
+    // "plugin:@typescript-eslint/recommended",
   ],
   plugins: [
     // "react",
@@ -29,60 +29,66 @@ module.exports = {
     "@typescript-eslint",
   ],
   rules: {
-    "linebreak-style": 0,
-    "max-len": [1, 100],
-    "no-multiple-empty-lines": [2, { max: 1}],
-    "object-curly-newline": [2, {
-      ObjectExpression: { minProperties: 3, multiline: true, consistent: true },
-      ObjectPattern: { minProperties: 3, multiline: true, consistent: true },
-      ImportDeclaration: { minProperties: 4, multiline: true, consistent: true },
-      ExportDeclaration: { minProperties: 3, multiline: true, consistent: true },
-    }],
+    // "linebreak-style": 0,
+    // "max-len": [1, 100],
+    "no-magic-numbers": 0, // disabled in favor @typescript-eslint/no-magic-numbers rule
+    // "no-multiple-empty-lines": [2, { max: 1}],
+    // "object-curly-newline": [2, {
+    //   ObjectExpression: { minProperties: 3, multiline: true, consistent: true },
+    //   ObjectPattern: { minProperties: 3, multiline: true, consistent: true },
+    //   ImportDeclaration: { minProperties: 4, multiline: true, consistent: true },
+    //   ExportDeclaration: { minProperties: 3, multiline: true, consistent: true },
+    // }],
 
-    "import/no-cycle": [2, { maxDepth: 1 }],
-    "import/no-extraneous-dependencies": 0,
-    "import/order": [1, {
-      groups: [
-        [
-          "builtin",
-          "external",
-          "internal"
-        ],
-      ],
-      "newlines-between": "always",
-    }],
+    // "import/no-cycle": [2, { maxDepth: 1 }],
+    // "import/no-extraneous-dependencies": 0,
+    // "import/order": [1, {
+    //   groups: [
+    //     [
+    //       "builtin",
+    //       "external",
+    //       "internal"
+    //     ],
+    //   ],
+    //   "newlines-between": "always",
+    // }],
     "import/prefer-default-export": 0,
 
-    "react/jsx-filename-extension": [1, {
-      "extensions": [".tsx", ".jsx"],
-    }],
+    "prettier/prettier": 0,
+
+    // "react/jsx-filename-extension": [1, {
+    //   "extensions": [".tsx", ".jsx"],
+    // }],
+    "react/jsx-closing-bracket-location": 1,
     "react/jsx-fragments": [1, "element"],
     "react/jsx-max-props-per-line": [2, {
       "maximum": 1,
       "when": "always",
     }],
-    "react/prefer-stateless-function": 0,
-    "react/prop-types": 0,
+    // "react/prefer-stateless-function": 0,
+    // "react/prop-types": 0,
 
-    "@typescript-eslint/array-type": [2, {
-      "default": "array-simple",
-      "readonly": "array-simple",
-    }],
+    "react-native/no-inline-styles": 2,
+
+    // "@typescript-eslint/array-type": [2, {
+    //   "default": "array-simple",
+    //   "readonly": "array-simple",
+    // }],
     "@typescript-eslint/interface-name-prefix": [2, {
       "prefixWithI": "always",
       "allowUnderscorePrefix": false,
     }],
-    "@typescript-eslint/member-delimiter-style": [2, {
-      "multiline": {
-          "delimiter": "comma",
-          "requireLast": true,
-      },
-      "singleline": {
-          "delimiter": "comma",
-          "requireLast": true,
-      }
-    }],
-    "@typescript-eslint/no-explicit-any": 1,
+    // "@typescript-eslint/member-delimiter-style": [2, {
+    //   "multiline": {
+    //       "delimiter": "comma",
+    //       "requireLast": true,
+    //   },
+    //   "singleline": {
+    //       "delimiter": "comma",
+    //       "requireLast": true,
+    //   }
+    // }],
+    // "@typescript-eslint/no-explicit-any": 1,
     "@typescript-eslint/no-magic-numbers": [1, {
       ignore: [-1, 0, 1, 2],
       ignoreArrayIndexes: true,
@@ -91,16 +97,12 @@ module.exports = {
       ignoreNumericLiteralTypes: false,
       ignoreEnums: false,
     }],
-    "@typescript-eslint/no-var-requires": 0,
+    // "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-unused-vars": 0,
   },
   globals: {
   },
   settings: {
-    // "import/resolver": {
-    //   webpack: {
-    //     config: "./config/webpack.base.config.js",
-    //   }
-    // },
     react: {
       version: "detect",
     },

@@ -138,26 +138,28 @@ module.exports = {
     "prettier/prettier": 0,
 
     // "react/jsx-boolean-value": [1, "never", { always: [] }],
-    // "react/jsx-closing-bracket-location": 1,
+    "react/jsx-closing-bracket-location": 1,
     // "react/jsx-closing-tag-location": 1,
-    // "react/jsx-indent": [1, 2],
-    // "react/jsx-indent-props": [1, 2],
+    "react/jsx-indent": [1, 2],
+    "react/jsx-indent-props": [1, 2],
     // "react/jsx-filename-extension": [1, {
     //   extensions: [".tsx", ".jsx"],
     // }],
     // "react/jsx-fragments": 0, // use React.Fragment or <>
-    // "react/jsx-tag-spacing": 1,
+    "react/jsx-tag-spacing": 1,
     // "react/prefer-stateless-function": 0,
     // "react/prop-types": 0,
     // "react/self-closing-comp": 1,
 
-    // "react-native/no-inline-styles": 2,
+    "react-native/no-inline-styles": 2,
 
     // "@typescript-eslint/member-delimiter-style": 0,
-    // "@typescript-eslint/interface-name-prefix": [2, {
-    //   prefixWithI: "always",
-    //   allowUnderscorePrefix: false,
-    // }],
+    "@typescript-eslint/interface-name-prefix": [2, {
+      prefixWithI: "always",
+      allowUnderscorePrefix: false,
+    }],
+    "@typescript-eslint/no-explicit-any": 1,
+    "@typescript-eslint/explicit-function-return-type": 1,
     "@typescript-eslint/no-magic-numbers": [1, {
       ignore: [-1, 0, 1, 2],
       ignoreArrayIndexes: true,
@@ -167,6 +169,7 @@ module.exports = {
       ignoreEnums: false,
     }],
     // "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-unused-vars": 1,
     // "@typescript-eslint/no-use-before-define": 0,
   },
 }

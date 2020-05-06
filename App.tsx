@@ -1,22 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import { ButtonApp } from '$components/UI/ButtonApp';
+import { AppNavigation } from '$navigation/AppNavigation';
+import { configureStore } from '$redux/store.ts';
 
-export default () => {
+const { store, persistor } = configureStore();
+
+const App: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app now!</Text>
-      <ButtonApp onPress={() => console.log()}/>
-    </View>
+    <Provider store={store}>
+      <PersistGate
+        loading={null}
+        persistor={persistor}
+      >
+        <AppNavigation />
+      </PersistGate>
+    </Provider>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
