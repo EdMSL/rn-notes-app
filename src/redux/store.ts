@@ -10,8 +10,8 @@ import { AsyncStorage } from 'react-native';
 import { PersistConfig, Persistor } from 'redux-persist/es/types';
 import createSagaMiddleware from 'redux-saga';
 
-import { userReducer, IUserRootState } from '$modules/user/reducer.ts';
-import { noteReducer, INoteRootState } from '$modules/note/reducer.ts';
+import { userReducer } from '$modules/user/reducer.ts';
+import { noteReducer } from '$modules/note/reducer.ts';
 // import userSaga from '$modules/user/sagas';
 // import contentSaga from '$modules/content/sagas';
 
@@ -28,31 +28,25 @@ const contentPersistConfig: PersistConfig = {
 };
 
 const sagaMiddleware = createSagaMiddleware();
-// export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
-  // note: noteReducer,
-  // user: userReducer,
   user: persistReducer(userPersistConfig, userReducer),
   content: persistReducer(contentPersistConfig, noteReducer),
-  // router: connectRouter(history),
 });
 
 export type IAppState = ReturnType<typeof rootReducer>
 
-// const composeEnhancers = typeof window === 'object'
-// /* eslint-disable @typescript-eslint/no-explicit-any */
-//   && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-//   ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-//   : compose;
-// /* eslint-enable @typescript-eslint/no-explicit-any */
+const composeEnhancers = typeof window === 'object'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+  && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+  : compose;
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 export const store = createStore(
   rootReducer,
-  // composeEnhancers(
-  compose(
+  composeEnhancers(
     applyMiddleware(
-      // routerMiddleware(history),
       sagaMiddleware,
     ),
   ),
