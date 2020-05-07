@@ -6,9 +6,9 @@ interface IActionReturnType<T> {
   payload?: T,
 }
 
-export const userAction = (
-  anyValue: IUserRootState['anyValue'],
-): IActionReturnType<typeof anyValue> => ({
-  type: USER_TYPES.ANY_ACTION,
-  payload: anyValue,
+export const setLanguage = (
+  language: IUserRootState['language'],
+): IActionReturnType<typeof language> => ({
+  type: USER_TYPES.SET_LANGUAGE,
+  payload: language,
 });

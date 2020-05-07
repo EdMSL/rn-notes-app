@@ -10,7 +10,8 @@ export const ModalScreen: React.FC<IProps> = ({ navigation }) => {
   return (
     <View style={styles.main}>
       <Text>This is a modal!</Text>
-      <Button onPress={() => navigation.goBack()}
+      <Button
+        onPress={() => navigation.goBack()}
         title="Dismiss"
       />
     </View>

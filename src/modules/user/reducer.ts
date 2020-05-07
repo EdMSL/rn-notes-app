@@ -1,10 +1,11 @@
 import { createReducer } from 'reduxsauce';
 
-import * as USER_ACTIONS from '$modules/user/actions.ts';
-import { USER_TYPES } from '$modules/user/types.ts';
+import * as USER_ACTIONS from '$modules/user/actions';
+import { USER_TYPES } from '$modules/user/types';
+import { ILanguage } from '$constants/language';
 
 export type IUserRootState = Readonly<{
-  anyValue: boolean,
+  language: ILanguage,
 }>;
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -16,19 +17,19 @@ interface IActionHandler<T> {
 }
 
 const INITIAL_STATE: IUserRootState = {
-  anyValue: true,
+  language: 'ru',
 };
 
-const userAction: IActionHandler<typeof USER_ACTIONS.userAction> = (
+const setLanguage: IActionHandler<typeof USER_ACTIONS.setLanguage> = (
   state,
-  { payload: anyValue },
+  { payload: language },
 ) => ({
   ...state,
-  anyValue: anyValue as boolean,
+  language: language as ILanguage,
 });
 
 const HANDLERS = {
-  [USER_TYPES.ANY_ACTION]: userAction,
+  [USER_TYPES.SET_LANGUAGE]: setLanguage,
 };
 
 export const userReducer = createReducer<IUserRootState>(INITIAL_STATE, HANDLERS);

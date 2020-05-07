@@ -16,7 +16,8 @@
       "$screens/*": [ "src/screens/*" ],
       "$components/*": [ "src/components/*" ],
       "$constants/*": [ "src/constants/*" ],
-      "$redux/*": [ "src/redux/*" ]
+      "$redux/*": [ "src/redux/*" ],
+      "$utils/*": [ "src/utils/*" ]
     }
   },
   "exclude": [

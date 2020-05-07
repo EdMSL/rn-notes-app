@@ -13,6 +13,7 @@ module.exports = {
            "$components": "./src/components",
            "$constants": "./src/constants",
            "$redux": "./src/redux",
+           "$utils": "./src/utils",
         }
       }
     ]

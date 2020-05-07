@@ -31,7 +31,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
   user: persistReducer(userPersistConfig, userReducer),
-  content: persistReducer(contentPersistConfig, noteReducer),
+  note: persistReducer(contentPersistConfig, noteReducer),
 });
 
 export type IAppState = ReturnType<typeof rootReducer>

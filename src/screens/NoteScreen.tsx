@@ -7,21 +7,23 @@ interface IProps {
 }
 
 export const NoteScreen: React.FC<IProps> = ({ navigation, route }) => {
-  const { itemId } = route.params;
-  const { otherParam } = route.params;
+  const itemId = route.params?.itemId ?? '23';
+  const { otherParam } = route?.params ?? 'Any text';
 
   return (
     <View style={styles.wrapper}>
       <Text>{`Note Screen ${itemId}`}</Text>
-      <Text>{otherParam}</Text>
+      <Text>{otherParam || 'text'}</Text>
       <Button
         title="Go to Details... again"
         onPress={() => navigation.push('Note')}
       />
-      <Button title="Go to Home"
+      <Button
+        title="Go to Home"
         onPress={() => navigation.navigate('Home')}
       />
-      <Button title="Go back"
+      <Button
+        title="Go back"
         onPress={() => navigation.goBack()}
       />
       <Button

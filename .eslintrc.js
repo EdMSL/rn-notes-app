@@ -51,35 +51,36 @@ module.exports = {
     //   before: false,
     //   after: true
     // }],
-    // "eol-last": 0,
+    "eol-last": 0,
     // "func-call-spacing": [1, "never"],
     // "jsx-quotes": [1, "prefer-double"],
-    // "indent": [1, 2, {
-    //   SwitchCase: 1,
-    //   VariableDeclarator: 1,
-    //   outerIIFEBody: 1,
-    //   FunctionDeclaration: {
-    //     parameters: 1,
-    //     body: 1
-    //   },
-    //   FunctionExpression: {
-    //     parameters: 1,
-    //     body: 1
-    //   },
-    //   CallExpression: {
-    //     arguments: 1
-    //   },
-    //   ArrayExpression: 1,
-    //   ObjectExpression: 1,
-    //   ImportDeclaration: 1,
-    //   flatTernaryExpressions: false,
-    //   ignoredNodes: ["JSXElement", "JSXElement > *", "JSXAttribute", "JSXIdentifier", "JSXNamespacedName", "JSXMemberExpression", "JSXSpreadAttribute", "JSXExpressionContainer", "JSXOpeningElement", "JSXClosingElement", "JSXText", "JSXEmptyExpression", "JSXSpreadChild"],
-    //   ignoreComments: false
-    // }],
+    "implicit-arrow-linebreak": 1,
+    "indent": [1, 2, {
+      SwitchCase: 1,
+      VariableDeclarator: 1,
+      outerIIFEBody: 1,
+      FunctionDeclaration: {
+        parameters: 1,
+        body: 1
+      },
+      FunctionExpression: {
+        parameters: 1,
+        body: 1
+      },
+      CallExpression: {
+        arguments: 1
+      },
+      ArrayExpression: 1,
+      ObjectExpression: 1,
+      ImportDeclaration: 1,
+      flatTernaryExpressions: false,
+      ignoredNodes: ["JSXElement", "JSXElement > *", "JSXAttribute", "JSXIdentifier", "JSXNamespacedName", "JSXMemberExpression", "JSXSpreadAttribute", "JSXExpressionContainer", "JSXOpeningElement", "JSXClosingElement", "JSXText", "JSXEmptyExpression", "JSXSpreadChild"],
+      ignoreComments: false
+    }],
     // "key-spacing": [1, { beforeColon: false, afterColon: true }],
     // "linebreak-style": 0,
     // "lines-between-class-members": 0,
-    // "max-len": [1, 110],
+    "max-len": [1, 110],
     // "no-extra-semi": 1,
     "no-magic-numbers": 0, // disabled in favor @typescript-eslint/no-magic-numbers rule
     // "no-multi-spaces": [1, {
@@ -92,13 +93,13 @@ module.exports = {
     //   skipBlankLines: false,
     //   ignoreComments: false,
     // }],
-    // "object-curly-newline": [1, {
-    //   ObjectExpression: { minProperties: 3, multiline: true, consistent: true },
-    //   ObjectPattern: { minProperties: 3, multiline: true, consistent: true },
-    //   ImportDeclaration: { minProperties: 4, multiline: true, consistent: true },
-    //   ExportDeclaration: { minProperties: 3, multiline: true, consistent: true },
-    // }],
-    // "object-curly-spacing": [1, "always"],
+    "object-curly-newline": [1, {
+      ObjectExpression: { minProperties: 3, multiline: true, consistent: true },
+      ObjectPattern: { minProperties: 3, multiline: true, consistent: true },
+      ImportDeclaration: { minProperties: 4, multiline: true, consistent: true },
+      ExportDeclaration: { minProperties: 3, multiline: true, consistent: true },
+    }],
+    "object-curly-spacing": [1, "always"],
     // "object-property-newline": [1, {
     //   allowAllPropertiesOnSameLine: true,
     // }],
@@ -109,7 +110,7 @@ module.exports = {
     // }, {
     //   allowSingleLineBlocks: true,
     // }],
-    // quotes: [1, "single", { avoidEscape: true }],
+    quotes: [0, "single", { avoidEscape: true }],
     // "semi-spacing": [1, {
     //   before: false,
     //   after: true,
@@ -120,19 +121,20 @@ module.exports = {
     // "spaced-comment": 0,
 
     // "import/extensions": [2, "always", { "js": "never", "ts": "never", "tsx": "never" }],
-    // "import/newline-after-import": 0,
-    // "import/no-cycle": [2, { maxDepth: 1 }],
-    // "import/no-extraneous-dependencies": 0,
-    // "import/order": [1, {
-    //   groups: [
-    //     [
-    //       "builtin",
-    //       "external",
-    //       "internal"
-    //     ],
-    //   ],
-    //   "newlines-between": "always",
-    // }],
+    "import/newline-after-import": 0,
+    "import/no-cycle": [2, { maxDepth: 1 }],
+    "import/no-duplicates": 1,
+    "import/no-extraneous-dependencies": 0,
+    "import/order": [1, {
+      groups: [
+        [
+          "builtin",
+          "external",
+          "internal"
+        ],
+      ],
+      "newlines-between": "always",
+    }],
     "import/prefer-default-export": 0,
 
     "prettier/prettier": 0,
@@ -145,11 +147,26 @@ module.exports = {
     // "react/jsx-filename-extension": [1, {
     //   extensions: [".tsx", ".jsx"],
     // }],
+    "react/jsx-first-prop-new-line": 1,
     // "react/jsx-fragments": 0, // use React.Fragment or <>
     "react/jsx-tag-spacing": 1,
-    // "react/prefer-stateless-function": 0,
-    // "react/prop-types": 0,
-    // "react/self-closing-comp": 1,
+    "react/prefer-stateless-function": 0,
+    "react/prop-types": 0,
+    "react/self-closing-comp": 1,
+    "react/jsx-max-props-per-line": [1, {
+      "maximum": 1,
+      "when": "always",
+    }],
+    "react/jsx-wrap-multilines": ['error', {
+      declaration: 'parens-new-line',
+      assignment: 'parens-new-line',
+      return: 'parens-new-line',
+      arrow: 'parens-new-line',
+      condition: 'parens-new-line',
+      logical: 'parens-new-line',
+      prop: 'parens-new-line',
+    }],
+    "jsx-quotes": 0,
 
     "react-native/no-inline-styles": 2,
 
