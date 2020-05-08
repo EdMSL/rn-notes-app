@@ -6,9 +6,20 @@ interface IActionReturnType<T> {
   payload?: T,
 }
 
-export const noteAction = (
-  anyNote: INoteRootState['anyNote'],
-): IActionReturnType<typeof anyNote> => ({
-  type: NOTE_TYPES.ANY_SECTION,
-  payload: anyNote,
+export const getNotes = (): IActionReturnType<{}> => ({
+  type: NOTE_TYPES.GET_NOTES,
+});
+
+export const setNotes = (
+  notes: INoteRootState['notes'],
+): IActionReturnType<typeof notes> => ({
+  type: NOTE_TYPES.SET_NOTES,
+  payload: notes,
+});
+
+export const setIsNotesLoading = (
+  isNotesLoading: INoteRootState['isNotesLoading'],
+): IActionReturnType<typeof isNotesLoading> => ({
+  type: NOTE_TYPES.SET_IS_NOTES_LOADING,
+  payload: isNotesLoading,
 });

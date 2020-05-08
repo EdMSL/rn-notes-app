@@ -3,8 +3,15 @@ import { createReducer } from 'reduxsauce';
 import * as NOTE_ACTIONS from '$modules/note/actions.ts';
 import { NOTE_TYPES } from '$modules/note/types.ts';
 
+export interface INote {
+  id: string,
+  title: string,
+  isComplited: boolean,
+}
+
 export type INoteRootState = Readonly<{
-  anyNote: boolean,
+  notes: INote[],
+  isNotesLoading: boolean,
 }>;
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -15,20 +22,30 @@ interface IActionHandler<T> {
   (state: INoteRootState, payload: UnsafeReturnType<T>): INoteRootState,
 }
 
-const INITIAL_STATE: INoteRootState = {
-  anyNote: false,
-};
-
-const noteAction: IActionHandler<typeof NOTE_ACTIONS.noteAction> = (
+const setNotes: IActionHandler<typeof NOTE_ACTIONS.setNotes> = (
   state,
-  { payload: anyNote },
+  { payload: notes },
 ) => ({
   ...state,
-  anyNote: anyNote as boolean,
+  notes: notes as INote[],
+});
+
+const setIsNotesLoading: IActionHandler<typeof NOTE_ACTIONS.setIsNotesLoading> = (
+  state,
+  { payload: isNotesLoading },
+) => ({
+  ...state,
+  isNotesLoading: isNotesLoading as boolean,
 });
 
 const HANDLERS = {
-  [NOTE_TYPES.ANY_SECTION]: noteAction,
+  [NOTE_TYPES.SET_NOTES]: setNotes,
+  [NOTE_TYPES.SET_IS_NOTES_LOADING]: setIsNotesLoading,
+};
+
+const INITIAL_STATE: INoteRootState = {
+  notes: [],
+  isNotesLoading: false,
 };
 
 export const noteReducer = createReducer<INoteRootState>(INITIAL_STATE, HANDLERS);

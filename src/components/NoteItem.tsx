@@ -6,17 +6,19 @@ import {
 import { THEME } from '$constants/theme';
 
 interface IProps {
+  id: string,
   title: string,
-  onClick: () => void,
+  onClick: (id: string, title: string) => void,
 }
 
 export const NoteItem: React.FunctionComponent<IProps> = ({
+  id,
   title,
   onClick,
 }) => {
   const onItemPress = useCallback(() => {
-    onClick();
-  }, [onClick]);
+    onClick(id, title);
+  }, [onClick, id, title]);
 
   return (
     <TouchableNativeFeedback

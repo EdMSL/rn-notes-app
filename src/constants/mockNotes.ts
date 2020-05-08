@@ -2,16 +2,16 @@ export const NOTES = [
   {
     id: '1',
     title: 'Buy new game',
-    completed: false,
+    isComplited: false,
   },
   {
     id: '2',
     title: 'Get food',
-    completed: true,
+    isComplited: true,
   },
   {
     id: '3',
     title: 'Wash a car',
-    completed: false,
+    isComplited: false,
   },
 ];

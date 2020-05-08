@@ -1,13 +1,20 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {
-  View, Text, Button, FlatList, StyleSheet,
+  View,
+  Text,
+  Button,
+  FlatList,
+  StyleSheet,
+  ActivityIndicator,
 } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { setLanguage } from '$modules/user/actions';
 import { getText } from '$utils/localisation';
-import { NOTES } from '$constants/mockNotes';
 import { NoteItem } from '$components/NoteItem';
+import { getNotes } from '$modules/note/actions';
+import { IAppState } from '$redux/store';
+import { THEME } from '$constants/theme';
 
 interface IProps {
   navigation: any,
@@ -22,6 +29,13 @@ export interface IRouteProps {
 export const MainScreen: React.FC<IProps> = ({ route, navigation }) => {
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getNotes());
+  }, [dispatch]);
+
+  const notes = useSelector((state: IAppState) => state.note.notes);
+  const isNotesLoading = useSelector((state: IAppState) => state.note.isNotesLoading);
+
   const changeLanguage = useCallback(() => {
     dispatch(setLanguage('en'));
     navigation.setOptions({
@@ -29,29 +43,41 @@ export const MainScreen: React.FC<IProps> = ({ route, navigation }) => {
     });
   }, [dispatch, route, navigation]);
 
-  const onItemPress = useCallback(() => {
-
-  }, []);
+  const onItemPress = useCallback((id: string, title: string) => {
+    navigation.navigate('Note', {
+      itemId: id,
+      otherParam: title,
+    });
+  }, [navigation]);
 
   return (
     <View style={styles.main}>
-      <FlatList
-        data={NOTES}
-        keyExtractor={post => post.id.toString()}
-        renderItem={({ item }) => (
-          <NoteItem
-            title={item.title}
-            onClick={onItemPress}
-          />
-        )}
-      />
-      <Button
+      {
+        isNotesLoading
+          ? (
+            <ActivityIndicator color={THEME.mainColor} />
+          )
+          : (
+            <FlatList
+              data={notes}
+              keyExtractor={item => item.id.toString()}
+              renderItem={({ item }) => (
+                <NoteItem
+                  id={item.id}
+                  title={item.title}
+                  onClick={onItemPress}
+                />
+              )}
+            />
+          )
+      }
+      {/* <Button
         title="Go to Note"
         onPress={() => navigation.navigate('Note', {
           itemId: 1,
           otherParam: 'Parameter string',
         })}
-      />
+      /> */}
       {/* <Button
         title="Go to Modal"
         onPress={() => navigation.navigate('MyModal')}
