@@ -10,6 +10,13 @@ export const getNotes = (): IActionReturnType<{}> => ({
   type: NOTE_TYPES.GET_NOTES,
 });
 
+export const createNote = (
+  noteText: string,
+): IActionReturnType<typeof noteText> => ({
+  type: NOTE_TYPES.CREATE_NOTE,
+  payload: noteText,
+});
+
 export const setNotes = (
   notes: INoteRootState['notes'],
 ): IActionReturnType<typeof notes> => ({

@@ -15,6 +15,7 @@ import { NoteItem } from '$components/NoteItem';
 import { getNotes } from '$modules/note/actions';
 import { IAppState } from '$redux/store';
 import { THEME } from '$constants/theme';
+import { INote } from '$modules/note/reducer';
 
 interface IProps {
   navigation: any,
@@ -26,7 +27,7 @@ export interface IRouteProps {
   otherParam: string,
 }
 
-export const MainScreen: React.FC<IProps> = ({ route, navigation }) => {
+export const NotesScreen: React.FC<IProps> = ({ route, navigation }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -58,17 +59,22 @@ export const MainScreen: React.FC<IProps> = ({ route, navigation }) => {
             <ActivityIndicator color={THEME.mainColor} />
           )
           : (
-            <FlatList
-              data={notes}
-              keyExtractor={item => item.id.toString()}
-              renderItem={({ item }) => (
-                <NoteItem
-                  id={item.id}
-                  title={item.title}
-                  onClick={onItemPress}
-                />
-              )}
-            />
+            <React.Fragment>
+              <FlatList
+                data={notes}
+                keyExtractor={item => item.id.toString()}
+                renderItem={({ item }) => (
+                  <NoteItem
+                    note={item}
+                    onClick={onItemPress}
+                  />
+                )}
+              />
+              <Button
+                title={getText('ru', 'createNote')}
+                onPress={() => navigation.navigate('Create')}
+              />
+            </React.Fragment>
           )
       }
       {/* <Button
@@ -81,8 +87,8 @@ export const MainScreen: React.FC<IProps> = ({ route, navigation }) => {
       {/* <Button
         title="Go to Modal"
         onPress={() => navigation.navigate('MyModal')}
-      />
-      <Button
+      /> */}
+      {/* <Button
         title="Change language"
         onPress={changeLanguage}
       /> */}

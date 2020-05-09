@@ -19,6 +19,9 @@ export const localisations: ILocalisation = {
       note: 'Заметка',
       settings: 'Настройки',
       create: 'Создать',
+      createNote: 'Создать новую заметку',
+      createNotePlaceholder: 'Введите текст заметки',
+      createNoteBtn: 'Сохранить',
     },
   },
   en: {
@@ -28,6 +31,9 @@ export const localisations: ILocalisation = {
       note: 'Note',
       settings: 'Settings',
       create: 'Create',
+      createNote: 'Create a new note',
+      createNotePlaceholder: 'Enter a note text',
+      createNoteBtn: 'Save',
     },
   },
 };
