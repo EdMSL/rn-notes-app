@@ -4,7 +4,7 @@ import * as NOTE_ACTIONS from '$modules/note/actions.ts';
 import { NOTE_TYPES } from '$modules/note/types.ts';
 
 export interface INote {
-  id: string,
+  id: number,
   title: string,
   isComplited: boolean,
 }

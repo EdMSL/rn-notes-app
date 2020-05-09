@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setLanguage } from '$modules/user/actions';
 import { getText } from '$utils/localisation';
 import { NoteItem } from '$components/NoteItem';
-import { getNotes } from '$modules/note/actions';
+import { getNotes, removeNote } from '$modules/note/actions';
 import { IAppState } from '$redux/store';
 import { THEME } from '$constants/theme';
 import { INote } from '$modules/note/reducer';
@@ -44,12 +44,15 @@ export const NotesScreen: React.FC<IProps> = ({ route, navigation }) => {
     });
   }, [dispatch, route, navigation]);
 
-  const onItemPress = useCallback((id: string, title: string) => {
+  const onItemPress = useCallback((id: number, title: string) => {
     navigation.navigate('Note', {
       itemId: id,
       otherParam: title,
     });
   }, [navigation]);
+  const onItemLongPress = useCallback((id: number) => {
+    dispatch(removeNote(id));
+  }, [dispatch]);
 
   return (
     <View style={styles.main}>
@@ -60,16 +63,25 @@ export const NotesScreen: React.FC<IProps> = ({ route, navigation }) => {
           )
           : (
             <React.Fragment>
-              <FlatList
-                data={notes}
-                keyExtractor={item => item.id.toString()}
-                renderItem={({ item }) => (
-                  <NoteItem
-                    note={item}
-                    onClick={onItemPress}
-                  />
-                )}
-              />
+              {
+                notes.length > 0
+                  ? (
+                    <FlatList
+                      data={notes}
+                      keyExtractor={item => item.id.toString()}
+                      renderItem={({ item }) => (
+                        <NoteItem
+                          note={item}
+                          onClick={onItemPress}
+                          onLongPress={onItemLongPress}
+                        />
+                      )}
+                    />
+                  )
+                  : (
+                    <Text>{getText('ru', 'noNotes')}</Text>
+                  )
+              }
               <Button
                 title={getText('ru', 'createNote')}
                 onPress={() => navigation.navigate('Create')}

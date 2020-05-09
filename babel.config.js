@@ -7,6 +7,8 @@ module.exports = {
         root: ['./src'],
         extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json'],
         alias: {
+           "$db": "./src/db",
+           "$modules": "./src/modules",
            "$modules": "./src/modules",
            "$navigation": "./src/navigation",
            "$screens": "./src/screens",

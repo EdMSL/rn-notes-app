@@ -17,6 +17,13 @@ export const createNote = (
   payload: noteText,
 });
 
+export const removeNote = (
+  noteId: number,
+): IActionReturnType<typeof noteId> => ({
+  type: NOTE_TYPES.REMOVE_NOTE,
+  payload: noteId,
+});
+
 export const setNotes = (
   notes: INoteRootState['notes'],
 ): IActionReturnType<typeof notes> => ({
