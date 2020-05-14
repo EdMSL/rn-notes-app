@@ -4,8 +4,19 @@ import * as USER_ACTIONS from '$modules/user/actions';
 import { USER_TYPES } from '$modules/user/types';
 import { ILanguage } from '$constants/language';
 
+export interface ISetting {
+  id: number,
+  title: string,
+  value: string|number,
+}
+
+export interface IStateSetting<V> {
+  id: number,
+  value: V,
+}
+
 export type IUserRootState = Readonly<{
-  language: ILanguage,
+  language: IStateSetting<ILanguage>,
 }>;
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -17,18 +28,30 @@ interface IActionHandler<T> {
 }
 
 const INITIAL_STATE: IUserRootState = {
-  language: 'ru',
+  language: {
+    id: 0,
+    value: 'ru',
+  },
 };
+
+const initSettings: IActionHandler<typeof USER_ACTIONS.initSettings> = (
+  state,
+  { payload: settings },
+) => ({
+  ...state,
+  ...settings,
+});
 
 const setLanguage: IActionHandler<typeof USER_ACTIONS.setLanguage> = (
   state,
   { payload: language },
 ) => ({
   ...state,
-  language: language as ILanguage,
+  language: language as IStateSetting<ILanguage>,
 });
 
 const HANDLERS = {
+  [USER_TYPES.INIT_SETTINGS]: initSettings,
   [USER_TYPES.SET_LANGUAGE]: setLanguage,
 };
 

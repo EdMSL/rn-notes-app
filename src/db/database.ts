@@ -6,10 +6,13 @@ const db = SQLite.openDatabase('post.db');
 
 export class DB {
   static init() {
+    return new Promise.all([this.initNotes(), this.initSettings()/* , this.createSettings() */]);
+  }
+
+  static initNotes() {
     return new Promise((resolve, reject) => {
       db.transaction(tx => {
         tx.executeSql(
-          // 'CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY NOT NULL, title TEXT NOT NULL, isComplited INT)',
           'create table if not exists notes (id integer primary key not null, title text not null, isComplited int);',
           [],
           resolve,
@@ -22,6 +25,69 @@ export class DB {
     });
   }
 
+  static initSettings() {
+    return new Promise((resolve, reject) => {
+      db.transaction(tx => {
+        tx.executeSql(
+          'SELECT name FROM sqlite_master WHERE type="table" AND name="settings"',
+          [],
+          (_, { rows: { _array } }) => resolve(_array),
+          (_, error) => {
+            reject(error);
+            return false;
+          },
+        );
+      });
+    })
+      .then((result) => {
+        console.log(result)
+        if (result.length === 0) {
+          return new Promise((resolve, reject) => {
+            db.transaction(tx => {
+              tx.executeSql(
+                'create table if not exists settings (id integer primary key not null, title text not null, value null);',
+                [],
+                resolve,
+                (_, error) => {
+                  reject(error);
+                  return false;
+                },
+              );
+            });
+          })
+            .then(() => {
+              return new Promise((resolve, reject) => {
+                db.transaction(tx => {
+                  tx.executeSql(
+                    `INSERT INTO settings (title, value) VALUES (?, ?)`,
+                    ['language', 'ru'],
+                    resolve,
+                    (_, error) => {
+                      reject(error);
+                      return false;
+                    },
+                  );
+                });
+              });
+            });
+        }/*  else {
+          return new Promise((resolve, reject) => {
+            db.transaction(tx => {
+              tx.executeSql(
+                'DROP TABLE IF EXISTS settings;',
+                [],
+                resolve,
+                (_, error) => {
+                  reject(error);
+                  return false;
+                },
+              );
+            });
+          })
+        } */
+      });
+  }
+
   static getNotes()/* : Promise<INote[]> */ {
     return new Promise((resolve, reject) => {
       db.transaction(tx => {
@@ -29,6 +95,38 @@ export class DB {
           'SELECT * FROM notes',
           [],
           (_, { rows: { _array } }) => resolve(_array),
+          (_, error) => {
+            reject(error);
+            return false;
+          },
+        );
+      });
+    });
+  }
+
+  static getSettings()/* : Promise<INote[]> */ {
+    return new Promise((resolve, reject) => {
+      db.transaction(tx => {
+        tx.executeSql(
+          'SELECT * FROM settings',
+          [],
+          (_, { rows: { _array } }) => resolve(_array),
+          (_, error) => {
+            reject(error);
+            return false;
+          },
+        );
+      });
+    });
+  }
+
+  static updateSetting(id: number, value: any) {
+    return new Promise((resolve, reject) => {
+      db.transaction(tx => {
+        tx.executeSql(
+          'UPDATE settings SET value = ? WHERE id = ?',
+          [value, id],
+          resolve,
           (_, error) => {
             reject(error);
             return false;

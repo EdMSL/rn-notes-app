@@ -13,10 +13,11 @@ import createSagaMiddleware from 'redux-saga';
 import { userReducer } from '$modules/user/reducer.ts';
 import { noteReducer } from '$modules/note/reducer.ts';
 import { NoteSaga } from '$modules/note/sagas';
+import { UserSaga } from '$modules/user/sagas';
 
 const userPersistConfig: PersistConfig = {
   key: 'user',
-  whitelist: ['anyValue'],
+  whitelist: [],
   storage: AsyncStorage,
 };
 
@@ -52,7 +53,7 @@ export const store = createStore(
 );
 
 export function configureStore(): { store: Store<IAppState>, persistor: Persistor, } {
-  // sagaMiddleware.run(userSaga);
+  sagaMiddleware.run(UserSaga);
   sagaMiddleware.run(NoteSaga);
 
   const persistor = persistStore(store);
