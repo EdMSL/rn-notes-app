@@ -14,6 +14,7 @@ import { NoteItem } from '$components/NoteItem';
 import { getNotes, removeNote } from '$modules/note/actions';
 import { IAppState } from '$redux/store';
 import { THEME } from '$constants/theme';
+import { getSettings } from '$modules/user/actions';
 
 interface IProps {
   navigation: any,
@@ -30,6 +31,7 @@ export const NotesScreen: React.FC<IProps> = ({ navigation }) => {
 
   useEffect(() => {
     dispatch(getNotes());
+    dispatch(getSettings());
   }, [dispatch]);
 
   const notes = useSelector((state: IAppState) => state.note.notes);
@@ -41,6 +43,7 @@ export const NotesScreen: React.FC<IProps> = ({ navigation }) => {
       otherParam: title,
     });
   }, [navigation]);
+
   const onItemLongPress = useCallback((id: number) => {
     dispatch(removeNote(id));
   }, [dispatch]);

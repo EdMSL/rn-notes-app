@@ -42,17 +42,8 @@ const initSettings: IActionHandler<typeof USER_ACTIONS.initSettings> = (
   ...settings,
 });
 
-const setLanguage: IActionHandler<typeof USER_ACTIONS.setLanguage> = (
-  state,
-  { payload: language },
-) => ({
-  ...state,
-  language: language as IStateSetting<ILanguage>,
-});
-
 const HANDLERS = {
   [USER_TYPES.INIT_SETTINGS]: initSettings,
-  [USER_TYPES.SET_LANGUAGE]: setLanguage,
 };
 
 export const userReducer = createReducer<IUserRootState>(INITIAL_STATE, HANDLERS);

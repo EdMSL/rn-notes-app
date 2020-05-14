@@ -27,10 +27,3 @@ export const changeSetting = (
     value,
   },
 });
-
-export const setLanguage = (
-  language: IUserRootState['language'],
-): IActionReturnType<typeof language> => ({
-  type: USER_TYPES.SET_LANGUAGE,
-  payload: language,
-});

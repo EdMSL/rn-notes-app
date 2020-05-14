@@ -6,7 +6,7 @@ const db = SQLite.openDatabase('post.db');
 
 export class DB {
   static init() {
-    return new Promise.all([this.initNotes(), this.initSettings()/* , this.createSettings() */]);
+    return new Promise.all([this.initNotes(), this.initSettings()]);
   }
 
   static initNotes() {
@@ -40,7 +40,6 @@ export class DB {
       });
     })
       .then((result) => {
-        console.log(result)
         if (result.length === 0) {
           return new Promise((resolve, reject) => {
             db.transaction(tx => {

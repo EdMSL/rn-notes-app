@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import {
   Text,
+  View,
   TouchableNativeFeedback,
   StyleSheet,
 } from 'react-native';
@@ -31,13 +32,12 @@ export const SettingCheckboxItem: React.FunctionComponent<IProps> = ({
       style={styles.item}
       onPress={onCheckboxChange}
     >
-      <Checkbox
-        status={currentValue === option.value ? 'checked' : 'unchecked'}
-      />
-      <Text>{option.label}</Text>
-      {
-        currentValue === option.value && (<Text>Selected</Text>)
-      }
+      <View>
+        <Checkbox
+          status={currentValue === option.value ? 'checked' : 'unchecked'}
+        />
+        <Text>{option.label}</Text>
+      </View>
     </TouchableNativeFeedback>
   );
 };
