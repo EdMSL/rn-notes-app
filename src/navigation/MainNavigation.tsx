@@ -67,7 +67,6 @@ export const MainNavigation: React.FC = () => {
         component={SettingsScreen}
         options={({ route }): StackNavigationOptions => ({
           title: getText(language, route.name.toLowerCase()),
-          // headerRight: 'none'
         })}
       />
       <HomeStack.Screen

@@ -60,8 +60,15 @@ function* removeNoteSaga({ payload: id }: ReturnType<typeof NOTE_ACTIONS.removeN
   }
 }
 
+function* updateNoteSaga({
+  payload: { noteId, text },
+}: ReturnType<typeof NOTE_ACTIONS.updateNote>): SagaIterator {
+
+}
+
 export function* NoteSaga(): SagaIterator {
   yield takeLatest(NOTE_TYPES.GET_NOTES, getNotesSaga);
   yield takeLatest(NOTE_TYPES.CREATE_NOTE, createNoteSaga);
   yield takeLatest(NOTE_TYPES.REMOVE_NOTE, removeNoteSaga);
+  yield takeLatest(NOTE_TYPES.UPDATE_NOTE, updateNoteSaga);
 }
