@@ -20,6 +20,7 @@ export const SettingsScreen: React.FC<IProps> = () => {
   const dispatch = useDispatch();
 
   const settings = useSelector((state: IAppState) => state.user);
+  const language = useSelector((state: IAppState) => state.user.language.value);
 
   const onSettingChange = useCallback((value, settingName: string) => {
     dispatch(changeSetting(value, settingName));
@@ -32,6 +33,7 @@ export const SettingsScreen: React.FC<IProps> = () => {
         keyExtractor={item => item}
         renderItem={({ item }) => (
           <SettingItem
+            language={language}
             name={item}
             setting={allSettings[item]}
             currentValue={settings[item].value}

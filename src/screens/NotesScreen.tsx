@@ -36,6 +36,7 @@ export const NotesScreen: React.FC<IProps> = ({ navigation }) => {
 
   const notes = useSelector((state: IAppState) => state.note.notes);
   const isNotesLoading = useSelector((state: IAppState) => state.note.isNotesLoading);
+  const language = useSelector((state: IAppState) => state.user.language.value);
 
   const onItemPress = useCallback((id: number, title: string) => {
     navigation.navigate('Note', {
@@ -73,11 +74,11 @@ export const NotesScreen: React.FC<IProps> = ({ navigation }) => {
                     />
                   )
                   : (
-                    <Text>{getText('ru', 'noNotes')}</Text>
+                    <Text>{getText(language, 'noNotes')}</Text>
                   )
               }
               <Button
-                title={getText('ru', 'createNote')}
+                title={getText(language, 'createNote')}
                 onPress={() => navigation.navigate('Create')}
               />
             </React.Fragment>

@@ -5,6 +5,7 @@ import {
   Item,
 } from 'react-navigation-header-buttons';
 import { StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import { THEME } from '$constants/theme';
 import { getText } from '$utils/localisation';
@@ -13,6 +14,7 @@ import { NoteScreen } from '$screens/NoteScreen';
 import { CreateNoteScreen } from '$screens/CreateNoteScreen';
 import { SettingsScreen } from '$screens/SettingsScreen';
 import { HeaderButtonApp } from '$components/UI/HeaderButtonApp';
+import { IAppState } from '$redux/store';
 
 const HomeStack = createStackNavigator();
 
@@ -27,6 +29,8 @@ const headerDefaultStyle = {
 };
 
 export const MainNavigation: React.FC = () => {
+  const language = useSelector((state: IAppState) => state.user.language.value);
+
   return (
     <HomeStack.Navigator
       initialRouteName="Notes"
@@ -38,7 +42,7 @@ export const MainNavigation: React.FC = () => {
         name="Notes"
         component={NotesScreen}
         options={({ route, navigation }): StackNavigationOptions => ({
-          title: getText('ru', route.name.toLowerCase()),
+          title: getText(language, route.name.toLowerCase()),
           headerRight: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButtonApp}>
               <Item
@@ -55,14 +59,14 @@ export const MainNavigation: React.FC = () => {
         name="Create"
         component={CreateNoteScreen}
         options={({ route }): StackNavigationOptions => ({
-          title: getText('ru', route.name.toLowerCase()),
+          title: getText(language, route.name.toLowerCase()),
         })}
       />
       <HomeStack.Screen
         name="Settings"
         component={SettingsScreen}
         options={({ route }): StackNavigationOptions => ({
-          title: getText('ru', route.name.toLowerCase()),
+          title: getText(language, route.name.toLowerCase()),
           // headerRight: 'none'
         })}
       />
@@ -70,7 +74,7 @@ export const MainNavigation: React.FC = () => {
         name="Note"
         component={NoteScreen}
         options={({ route }): StackNavigationOptions => ({
-          title: getText('ru', route.name.toLowerCase()),
+          title: getText(language, route.name.toLowerCase()),
         })}
       />
     </HomeStack.Navigator>

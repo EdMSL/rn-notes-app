@@ -9,8 +9,9 @@ import {
   Keyboard,
   StyleSheet,
 } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { IAppState } from '$redux/store';
 import { getText } from '$utils/localisation';
 import { THEME } from '$constants/theme';
 import { createNote } from '$modules/note/actions';
@@ -26,6 +27,8 @@ export interface IRouteProps {
 
 export const CreateNoteScreen: React.FC<IProps> = ({ navigation }) => {
   const dispatch = useDispatch();
+
+  const language = useSelector((state: IAppState) => state.user.language.value);
 
   const [text, setText] = useState<string>('');
 
@@ -46,16 +49,16 @@ export const CreateNoteScreen: React.FC<IProps> = ({ navigation }) => {
     <ScrollView>
       <TouchableWithoutFeedback onPress={onFreeSpaceClick}>
         <View style={styles.main}>
-          <Text style={styles.title}>{getText('ru', 'createNote')}</Text>
+          <Text style={styles.title}>{getText(language, 'createNote')}</Text>
           <TextInput
             style={styles.textarea}
-            placeholder={getText('ru', 'createNotePlaceholder')}
+            placeholder={getText(language, 'createNotePlaceholder')}
             value={text}
             onChangeText={onNoteInputChange}
             multiline
           />
           <Button
-            title={getText('ru', 'createNoteBtn')}
+            title={getText(language, 'createNoteBtn')}
             color={THEME.mainColor}
             onPress={onSaveNoteBtnClick}
             disabled={!text}

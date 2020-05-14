@@ -7,8 +7,10 @@ import { THEME } from '$constants/theme';
 import { IDefaultSetting } from '$constants/default';
 import { SettingCheckboxItem } from '$components/SettingCheckboxItem';
 import { getText } from '$utils/localisation';
+import { ILanguage } from '$constants/language';
 
 interface IProps {
+  language: ILanguage,
   name: string,
   setting: IDefaultSetting,
   currentValue: any,
@@ -16,6 +18,7 @@ interface IProps {
 }
 
 export const SettingItem: React.FunctionComponent<IProps> = ({
+  language,
   name,
   setting,
   currentValue,
@@ -28,7 +31,7 @@ export const SettingItem: React.FunctionComponent<IProps> = ({
   return (
     <View style={styles.item}>
       <View>
-        <Text>{getText('ru', setting.title)}</Text>
+        <Text>{getText(language, setting.title)}</Text>
       </View>
       <View>
         {

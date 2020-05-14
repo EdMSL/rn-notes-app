@@ -3,9 +3,9 @@ import {
   Text,
   View,
   TouchableNativeFeedback,
+  CheckBox,
   StyleSheet,
 } from 'react-native';
-import { Checkbox } from 'react-native-paper';
 
 import { THEME } from '$constants/theme';
 
@@ -32,9 +32,9 @@ export const SettingCheckboxItem: React.FunctionComponent<IProps> = ({
       style={styles.item}
       onPress={onCheckboxChange}
     >
-      <View>
-        <Checkbox
-          status={currentValue === option.value ? 'checked' : 'unchecked'}
+      <View style={styles.item}>
+        <CheckBox
+          value={currentValue === option.value}
         />
         <Text>{option.label}</Text>
       </View>
