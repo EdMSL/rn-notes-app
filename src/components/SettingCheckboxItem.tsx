@@ -1,11 +1,12 @@
 import React, { useCallback } from 'react';
 import {
-  View, Text, StyleSheet,
+  Text,
+  TouchableNativeFeedback,
+  StyleSheet,
 } from 'react-native';
 import { Checkbox } from 'react-native-paper';
 
 import { THEME } from '$constants/theme';
-import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 
 interface IProps {
   option: {
@@ -32,7 +33,6 @@ export const SettingCheckboxItem: React.FunctionComponent<IProps> = ({
     >
       <Checkbox
         status={currentValue === option.value ? 'checked' : 'unchecked'}
-        // onPress={onCheckboxChange}
       />
       <Text>{option.label}</Text>
       {

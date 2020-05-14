@@ -1,6 +1,9 @@
 import React, { useCallback } from 'react';
 import {
-  View, Text, TouchableOpacity, TouchableNativeFeedback, StyleSheet,
+  View,
+  Text,
+  TouchableNativeFeedback,
+  StyleSheet,
 } from 'react-native';
 
 import { THEME } from '$constants/theme';
@@ -27,7 +30,6 @@ export const NoteItem: React.FunctionComponent<IProps> = ({
 
   return (
     <TouchableNativeFeedback
-      // activeOpacity={0.7}
       onPress={onItemPress}
       onLongPress={onItemLongPress}
     >

@@ -9,13 +9,11 @@ import {
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setLanguage } from '$modules/user/actions';
 import { getText } from '$utils/localisation';
 import { NoteItem } from '$components/NoteItem';
 import { getNotes, removeNote } from '$modules/note/actions';
 import { IAppState } from '$redux/store';
 import { THEME } from '$constants/theme';
-import { INote } from '$modules/note/reducer';
 
 interface IProps {
   navigation: any,
@@ -27,7 +25,7 @@ export interface IRouteProps {
   otherParam: string,
 }
 
-export const NotesScreen: React.FC<IProps> = ({ route, navigation }) => {
+export const NotesScreen: React.FC<IProps> = ({ navigation }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,13 +34,6 @@ export const NotesScreen: React.FC<IProps> = ({ route, navigation }) => {
 
   const notes = useSelector((state: IAppState) => state.note.notes);
   const isNotesLoading = useSelector((state: IAppState) => state.note.isNotesLoading);
-
-  const changeLanguage = useCallback(() => {
-    dispatch(setLanguage('en'));
-    navigation.setOptions({
-      title: getText('en', route.name.toLowerCase()),
-    });
-  }, [dispatch, route, navigation]);
 
   const onItemPress = useCallback((id: number, title: string) => {
     navigation.navigate('Note', {
@@ -89,21 +80,6 @@ export const NotesScreen: React.FC<IProps> = ({ route, navigation }) => {
             </React.Fragment>
           )
       }
-      {/* <Button
-        title="Go to Note"
-        onPress={() => navigation.navigate('Note', {
-          itemId: 1,
-          otherParam: 'Parameter string',
-        })}
-      /> */}
-      {/* <Button
-        title="Go to Modal"
-        onPress={() => navigation.navigate('MyModal')}
-      /> */}
-      {/* <Button
-        title="Change language"
-        onPress={changeLanguage}
-      /> */}
     </View>
   );
 };

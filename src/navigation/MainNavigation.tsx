@@ -1,12 +1,10 @@
 import React from 'react';
-import { createStackNavigator, StackHeaderProps, StackNavigationOptions } from '@react-navigation/stack';
-// import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import {
   HeaderButtons,
   Item,
 } from 'react-navigation-header-buttons';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { Alert, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import { THEME } from '$constants/theme';
 import { getText } from '$utils/localisation';
@@ -51,7 +49,6 @@ export const MainNavigation: React.FC = () => {
               />
             </HeaderButtons>
           ),
-          // headerShown: false,
         })}
       />
       <HomeStack.Screen
